@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para campos de habilidades */
+        .checkbox-label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Estilo para los datalist */
+        input[list] {
+            width: calc(100% - 20px);
+        }
+
+        /* Estilo para el contenedor de habilidades */
+        .habilidades-container {
+            margin-bottom: 10px;
+        }
+
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="insertar.php" method = "post">
+        <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <h2>Datos Personales</h2>
+            <label for="nombre_apellidos">Nombre y Apellidos:</label>
+            <input type="text" id="nombre_apellidos" name="nombre_apellidos" placeholder="Nombre y Apellidos">
+            
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+            
+            <label for="ocupacion">Ocupación:</label>
+            <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupación">
+            
+            <label for="contacto">Contacto (Teléfono o Email):</label>
+            <input type="text" id="contacto" name="contacto" placeholder="Teléfono o Email">
+        </div>
+
+        <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <h2>Información Adicional</h2>
+            <label for="nacionalidad">Nacionalidad:</label>
+            <select id="nacionalidad" name="nacionalidad">
+                <option value="peruana">Peruana</option>
+                <option value="argentina">Argentina</option>
+				<option value="mexicana">Mexicana</option>
+            </select>
+            
+            <label>Nivel de Inglés:</label><br>
+            <label><input type="radio" name="nivel_ingles" value="basico"> Básico</label><br>
+            <label><input type="radio" name="nivel_ingles" value="intermedio"> Intermedio</label><br>
+            <label><input type="radio" name="nivel_ingles" value="avanzado"> Avanzado</label><br>
+            <label><input type="radio" name="nivel_ingles" value="fluido"> Fluido</label><br>
+            
+            <label for="lenguajes_programacion">Lenguajes de Programación:</label><br>
+            <select id="lenguajes_programacion" name="lenguajes_programacion[]" multiple>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+                <option value="c++">C++</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+
+        <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <h2>Habilidades y Perfil</h2>
+            <div class="habilidades-container">
+                <label for="aptitudes">Aptitudes:</label><br>
+                <input type="text" id="aptitudes" name="aptitudes" list="aptitudes_list">
+                <datalist id="aptitudes_list">
+                    <option value="Creatividad">
+                    <option value="Resolución de Problemas">
+                </datalist><br>
+            </div>
+            
+            <div class="habilidades-container">
+                <label>Habilidades:</label><br>
+                <label class="checkbox-label"><input type="checkbox" name="habilidades[]" value="habilidad1"> Habilidades blandas</label><br>
+                <label class="checkbox-label"><input type="checkbox" name="habilidades[]" value="habilidad2"> Habilidad locomotrices</label><br>
+				<label class="checkbox-label"><input type="checkbox" name="habilidades[]" value="habilidad2"> Liderazgo</label><br>
+            </div>
+            
+            <label for="perfil">Perfil:</label><br>
+            <textarea id="perfil" name="perfil" placeholder="Describe tu perfil..."></textarea><br>
+        </div>
+
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
