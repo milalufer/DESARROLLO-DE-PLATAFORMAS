@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="formdeta.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F4F4F4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px; 
+            margin: 0 auto; /* Centrar el contenedor */
+            background-color: #FFFFFF; /* Color de fondo del contenedor */
+            padding: 30px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+            border-radius: 10px; /* Borde redondeado */
+        }
+
+        header {
+            text-align: center; /* Centrar el título */
+            font-size: 25px; /* Tamaño grande */
+            color: #2D3142; /* Color de texto */
+            margin-bottom: 30px; /* Espacio inferior */
+            border-radius: 10px; /* Agregado el borde redondeado al encabezado */
+            background-color: #F9AA33; /* Color de fondo del encabezado */
+            padding: 10px; /* Espaciado interno */
+            font-weight: bold; /* Texto en negrita */
+        }
+
+        form {
+            background-color: #FFFFFF; /* Color de fondo del formulario */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        form div {
+            margin-bottom: 20px; /* Agrega un margen inferior entre cada sección del formulario */
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2D3142; /* Color de texto */
+        }
+
+        form input[type="text"],
+        form input[type="date"],
+        form select,
+        form textarea {
+            width: calc(100% - 18px); /* Ajuste para bordes */
+            padding: 10px;
+            margin-bottom: 10px; /* Incremento de espacio */
+            border: 1px solid #C5C6C7; /* Borde más claro */
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            background-color: #4CAF50; /* Color verde para el botón */
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #45a049; /* Color más oscuro al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Formulario</h1>
+        </header>
+        <form action="pasarvariables.php" method="post">
+            <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <h2>Información Básica</h2>
+                <label for="nombre_apellidos">Nombre y Apellidos:</label>
+                <input type="text" id="nombre_apellidos" name="nombre_apellidos" placeholder="Nombre y Apellidos">
+                
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                
+                <label for="ocupacion">Profesión:</label>
+                <input type="text" id="ocupacion" name="ocupacion" placeholder="Profesión">
+                
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad">
+                
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Email">
+                
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+            </div>
+
+            <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <h2>Intereses y Descripción</h2>
+                <label for="Nivel de Ingles">Nivel de Ingles:</label><br>
+                <select id="Nivel de Ingles" name="nivel_ingles" multiple>
+                    <option value="basico"> Básico</option>
+                    <option value="intermedio"> Intermedio</option>
+                    <option value="avanzado"> Avanzado</option>
+                    <option value="fluido"> Fluido</option>
+                </select>	
+            </div>
+
+            <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <h2>Experiencia Laboral</h2>
+                <div id="experiencia-laboral-container">
+                    <div class="experiencia">
+                        <label for="nombre_empresa" class="campo">Nombre de la empresa</label>
+                        <input type="text" class="empresa" name="empresa[]" required><br>
+                    </div>
+                </div>
+                <button type="button" onclick="agregarExperiencia()">Agregar Experiencia Laboral</button>
+            </div>
+
+            <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <h2>Formación</h2>
+                <div id="formacion-container">
+                    <div class="formacion">
+                        <label for="titulo_formacion" class="campo">Formación</label>
+                        <input type="text" class="titulo_formacion" name="titulo_formacion[]" required><br>
+                    </div>
+                </div>
+                <button type="button" onclick="agregarCampo('formacion')">Agregar Formación</button>
+            </div>
+
+            <div style="background-color: #e6e6e6; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                <h2>Aptitudes</h2>
+                <div id="aptitudes-container">
+                    <label for="aptitudes" class="campo">Aptitudes</label>
+                    <input type="text" list="lista-aptitudes" name="aptitudes[]" id="aptitudes" required>
+                    <datalist id="lista-aptitudes">
+                        <option value="Trabajo en equipo"></option>
+                        <option value="Liderazgo"></option>
+                        <option value="Trabajo bajo presion"></option>
+                    </datalist>
+                </div>
+                <button type="button" onclick="agregarAptitud()">Agregar Aptitud</button>
+            </div>
+
+            <input type="submit" value="Registrarse">
+        </form>
+    </div>
+
+    <script>
+        function agregarCampo(tipo) {
+            var container = document.getElementById(tipo + "-container");
+            var nuevoCampo = document.createElement("div");
+            nuevoCampo.innerHTML = `
+                <div class="${tipo}">
+                    <label for="${tipo}" class="campo">Nuevo campo de ${tipo}</label>
+                    <input type="text" class="${tipo}" name="${tipo}[]" required><br>
+                </div>
+            `;
+            container.appendChild(nuevoCampo);
+        }
+
+        function agregarExperiencia() {
+            var container = document.getElementById("experiencia-laboral-container");
+            var nuevaExperiencia = document.createElement("div");
+            nuevaExperiencia.innerHTML = `
+                <div class="experiencia">
+                    <label for="empresa" class="campo">Nombre de la empresa</label>
+                    <input type="text" class="empresa" name="empresa[]" required><br>
+                </div>
+            `;
+            container.appendChild(nuevaExperiencia);
+        }
+
+        function agregarAptitud() {
+            var container = document.getElementById("aptitudes-container");
+            var nuevaAptitud = document.createElement("div");
+            nuevaAptitud.innerHTML = `
+                <label for="aptitudes" class="campo">Nueva Aptitud</label>
+                <input type="text" list="lista-aptitudes" name="aptitudes[]" id="aptitudes" required>
+            `;
+            container.appendChild(nuevaAptitud);
+        }
+    </script>
+</body>
+</html>
