@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.MainPage">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Frame BackgroundColor="#6200EE" Padding="20" CornerRadius="10">
+                <Label Text="Formulario de CV" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="White" 
+                       FontSize="36"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                <StackLayout Spacing="15">
+                    <Label Text="Nombre Completo" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Ingresa tu nombre completo" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Correo Electrónico" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Ingresa tu correo electrónico" Keyboard="Email" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Número de Teléfono" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Ingresa tu número de teléfono" Keyboard="Telephone" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Dirección" FontSize="18" FontAttributes="Bold"/>
+                    <Entry Placeholder="Ingresa tu dirección" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Experiencia Laboral" FontSize="18" FontAttributes="Bold"/>
+                    <Editor Placeholder="Ingresa tu experiencia laboral" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Label Text="Educación" FontSize="18" FontAttributes="Bold"/>
+                    <Editor Placeholder="Ingresa tu educación" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Label Text="Habilidades" FontSize="18" FontAttributes="Bold"/>
+                    <Editor Placeholder="Ingresa tus habilidades" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Button Text="Enviar CV" BackgroundColor="#6200EE" TextColor="White" CornerRadius="5" Padding="10"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
