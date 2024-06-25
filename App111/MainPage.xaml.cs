@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using SQLite;
 using App111.Models;
+using System.Xml.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 
 
@@ -17,6 +19,7 @@ namespace App111
         public MainPage()
         {
             InitializeComponent();
+            llenarDatos();
         }
 
         private async void EnviarCV_Clicked(object sender, EventArgs e)
@@ -42,18 +45,25 @@ namespace App111
                 editorEducacion.Text = "";
                 editorHabilidades.Text = "";
                 await DisplayAlert("Registro", "Datos guardados con exito", "Ok");
-                var CvDatos = await App.SQLiteDB.GetDataAsync();
-                if (CvDatos != null)
-                {
-                    listViewCVs.ItemsSource = CvDatos;
+                llenarDatos();
 
-                }
             }
             else
             {
                 await DisplayAlert("Error", "Ingresar todos los datos", "Ok");
             }
         }
+
+        public async void llenarDatos()
+        {
+            var CvDatos = await App.SQLiteDB.GetDataAsync();
+            if (CvDatos != null)
+            {
+                listViewCVs.ItemsSource = CvDatos;
+
+            }
+        }
+
         public bool validarDatos()
         {
             bool respuesta;
@@ -104,6 +114,95 @@ namespace App111
                 respuesta = true;
             }
             return respuesta;
+        }
+
+        private async void listViewCVs_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+
+            var selectedCV = (CVData)e.SelectedItem;
+            entryId.Text = selectedCV.Id.ToString();
+            entryNombre.Text = selectedCV.NombreCompleto;
+            entryCorreo.Text = selectedCV.CorreoElectronico;
+            entryTelefono.Text = selectedCV.NumeroTelefono.ToString();
+            entryDireccion.Text = selectedCV.Direccion;
+            editorExperiencia.Text = selectedCV.ExperienciaLaboral;
+            editorEducacion.Text = selectedCV.Educacion;
+            editorHabilidades.Text = selectedCV.Habilidades;
+
+            btnRegistrar.IsVisible = false;
+            entryId.IsVisible = true;
+            btnActualizar.IsVisible = true;
+            btnEliminar.IsVisible = true;
+        }
+
+        private async void ActualizarCV_Clicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(entryId.Text))
+            {
+                CVData cvData = new CVData()
+                {
+                    Id = Convert.ToInt32(entryId.Text),
+                    NombreCompleto = entryNombre.Text,
+                    CorreoElectronico = entryCorreo.Text,
+                    NumeroTelefono = Convert.ToInt32(entryTelefono.Text),
+                    Direccion = entryDireccion.Text,
+                    ExperienciaLaboral = editorExperiencia.Text,
+                    Educacion = editorEducacion.Text,
+                    Habilidades = editorHabilidades.Text
+                };
+
+                await App.SQLiteDB.SaveCVDataAsync(cvData);
+
+                await DisplayAlert("Actualización", "Datos actualizados con éxito", "Ok");
+
+                LimpiarControles();
+                llenarDatos();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Seleccione un CV para actualizar", "Ok");
+            }
+        }
+
+        private async void btnEliminar_Clicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(entryId.Text))
+            {
+                var cVData = await App.SQLiteDB.GetCVDataByIdAsync(Convert.ToInt32(entryId.Text));
+                if (cVData != null)
+                {
+                    await App.SQLiteDB.DeleteBaseAsync(cVData);
+                    await DisplayAlert("Eliminado", "CV eliminado exitosamente", "Ok");
+                    LimpiarControles();
+                    llenarDatos();
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "Seleccione un CV para eliminar", "Ok");
+            }
+        }
+
+
+        private void LimpiarControles()
+        {
+            entryId.Text = "";
+            entryNombre.Text = "";
+            entryCorreo.Text = "";
+            entryTelefono.Text = "";
+            entryDireccion.Text = "";
+            editorExperiencia.Text = "";
+            editorEducacion.Text = "";
+            editorHabilidades.Text = "";
+
+            btnRegistrar.IsVisible = true;
+            entryId.IsVisible = false;
+            btnActualizar.IsVisible = false;
+            btnEliminar.IsVisible = false;
+
+            listViewCVs.SelectedItem = null;
         }
     }
 }

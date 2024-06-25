@@ -20,19 +20,24 @@ namespace App111.Data
 
         public Task<int> SaveCVDataAsync(CVData cvData)
         {
-            if (cvData.Id == 0)
+            if (cvData.Id != 0)
             {
-                return db.InsertAsync(cvData);
+                return db.UpdateAsync(cvData);
             }
             else
             {
-                return null;
+                return db.InsertAsync(cvData);
             }
         }
 
         public Task<List<CVData>> GetDataAsync()
         {
             return db.Table<CVData>().ToListAsync();
+        }
+        
+        public Task<int> DeleteBaseAsync (CVData cVData)
+        {
+            return db.DeleteAsync(cVData);
         }
 
         /// <summary>
