@@ -1,0 +1,80 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App111.MainPage"
+             BackgroundColor="#f0f0f0">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            <Frame BackgroundColor="#6200EE" Padding="20" CornerRadius="10">
+                <Label Text="Formulario de CV" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="White" 
+                       FontSize="36"
+                       FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame BackgroundColor="White" Padding="20" CornerRadius="10" HasShadow="True">
+                <StackLayout Spacing="15">
+                    <Label Text="Nombre Completo" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="entryNombre" Placeholder="Ingresa tu nombre completo" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Correo Electrónico" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="entryCorreo" Placeholder="Ingresa tu correo electrónico" Keyboard="Email" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Número de Teléfono" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="entryTelefono" Placeholder="Ingresa tu número de teléfono" Keyboard="Telephone" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Dirección" FontSize="18" FontAttributes="Bold"/>
+                    <Entry x:Name="entryDireccion" Placeholder="Ingresa tu dirección" BackgroundColor="#f0f0f0" TextColor="#333" />
+
+                    <Label Text="Experiencia Laboral" FontSize="18" FontAttributes="Bold"/>
+                    <Editor x:Name="editorExperiencia" Placeholder="Ingresa tu experiencia laboral" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Label Text="Educación" FontSize="18" FontAttributes="Bold"/>
+                    <Editor x:Name="editorEducacion" Placeholder="Ingresa tu educación" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Label Text="Habilidades" FontSize="18" FontAttributes="Bold"/>
+                    <Editor x:Name="editorHabilidades" Placeholder="Ingresa tus habilidades" BackgroundColor="#f0f0f0" TextColor="#333" HeightRequest="100"/>
+
+                    <Button Text="Enviar CV" Clicked="EnviarCV_Clicked" BackgroundColor="#6200EE" TextColor="White" CornerRadius="5" Padding="10"/>
+
+                    <Label Text="CVs Enviados" FontSize="24" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <ListView x:Name="listViewCVs">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid BackgroundColor="Transparent">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding NombreCompleto}" Grid.Row="0" Grid.Column="0" TextColor="Blue"/>
+                                        <Label Text="{Binding CorreoElectronico}" Grid.Row="0" Grid.Column="1" TextColor="Black"/>
+                                        <Label Text="{Binding NumeroTelefono}" Grid.Row="0" Grid.Column="2" TextColor="Black"/>
+                                        <Label Text="{Binding Direccion}" Grid.Row="0" Grid.Column="3" TextColor="Blue"/>
+                                        <Label Text="{Binding ExperienciaLaboral}" Grid.Row="0" Grid.Column="4" TextColor="Blue"/>
+                                        <Label Text="{Binding Educacion}" Grid.Row="0" Grid.Column="5" TextColor="Black"/>
+                                        <Label Text="{Binding Habilidades}" Grid.Row="0" Grid.Column="6" TextColor="Black"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

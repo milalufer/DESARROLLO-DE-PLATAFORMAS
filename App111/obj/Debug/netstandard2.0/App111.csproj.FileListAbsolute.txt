@@ -1,0 +1,15 @@
+C:\Users\USER\source\repos\App111\App111\bin\Debug\netstandard2.0\App111.deps.json
+C:\Users\USER\source\repos\App111\App111\bin\Debug\netstandard2.0\App111.dll
+C:\Users\USER\source\repos\App111\App111\bin\Debug\netstandard2.0\ref\App111.dll
+C:\Users\USER\source\repos\App111\App111\bin\Debug\netstandard2.0\App111.pdb
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.AssemblyInfo.cs
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.dll
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\refint\App111.dll
+C:\Users\USER\source\repos\App111\App111\obj\Debug\netstandard2.0\App111.pdb
